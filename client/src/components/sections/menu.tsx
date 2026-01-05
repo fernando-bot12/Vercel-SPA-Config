@@ -76,6 +76,8 @@ export default function Menu() {
             <TabsTrigger value="burritos" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Burritos</TabsTrigger>
             <TabsTrigger value="tortas" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Tortas</TabsTrigger>
             <TabsTrigger value="antojitos" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Antojitos</TabsTrigger>
+            <TabsTrigger value="tiras" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Tiras de Pollo</TabsTrigger>
+            <TabsTrigger value="parrilladas" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Parrilladas</TabsTrigger>
             <TabsTrigger value="postres" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Postres</TabsTrigger>
             <TabsTrigger value="bebidas" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Bebidas</TabsTrigger>
             <TabsTrigger value="preparadas" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Preparadas</TabsTrigger>
@@ -194,6 +196,35 @@ export default function Menu() {
             <MenuItem name="Flautas" price="$110" />
             <MenuItem name="Sincronizada (Ternera o Bisteck)" price="$140" />
             <MenuItem name="Panchos" price="$170" highlight />
+          </TabsContent>
+
+          <TabsContent value="tiras" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
+            <MenuItem name="Jr" price="$120" />
+            <MenuItem name="Mediano" price="$140" />
+            <MenuItem name="Master" price="$220" highlight />
+          </TabsContent>
+
+          <TabsContent value="parrilladas" className="animate-in fade-in slide-in-from-bottom-5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="space-y-4">
+                <h3 className="text-xl font-heading font-bold text-primary uppercase border-b border-primary/20 pb-2">Pollo</h3>
+                <MenuItem name="1 Persona" price="$110" />
+                <MenuItem name="2 Personas" price="$210" />
+                <MenuItem name="4 Personas" price="$400" highlight />
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-xl font-heading font-bold text-primary uppercase border-b border-primary/20 pb-2">Res</h3>
+                <MenuItem name="1 Persona" price="$150" />
+                <MenuItem name="2 Personas" price="$280" />
+                <MenuItem name="4 Personas" price="$540" highlight />
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-xl font-heading font-bold text-primary uppercase border-b border-primary/20 pb-2">Mixta</h3>
+                <MenuItem name="1 Persona" price="$130" />
+                <MenuItem name="2 Personas" price="$250" />
+                <MenuItem name="4 Personas" price="$460" highlight />
+              </div>
+            </div>
           </TabsContent>
 
           <TabsContent value="postres" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
