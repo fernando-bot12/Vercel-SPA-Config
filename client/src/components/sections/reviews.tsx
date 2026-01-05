@@ -90,11 +90,6 @@ export default function Reviews() {
           </Carousel>
         </div>
 
-        <div className="text-center mt-12">
-          <a href="#" className="inline-flex items-center text-primary hover:text-white transition-colors uppercase font-bold text-sm tracking-widest border-b border-primary pb-1 hover:border-white">
-            Déjanos tu reseña en Google
-          </a>
-        </div>
       </div>
     </section>
   );
