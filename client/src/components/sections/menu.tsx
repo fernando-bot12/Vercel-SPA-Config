@@ -60,64 +60,81 @@ export default function Menu() {
             Nuestro <span className="text-primary">Menú</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Explora nuestra selección de sabores intensos. Desde nuestras clásicas alitas hasta los combos más completos.
+            Explora nuestra selección de sabores intensos. Desde nuestras clásicas alitas hasta los platos más especiales.
           </p>
         </div>
 
-        <Tabs defaultValue="alitas" className="w-full max-w-4xl mx-auto">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-7 bg-white/5 p-1 h-auto mb-12 rounded-xl">
-            <TabsTrigger value="alitas" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs md:text-sm tracking-wide">Alitas</TabsTrigger>
-            <TabsTrigger value="boneless" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs md:text-sm tracking-wide">Boneless</TabsTrigger>
-            <TabsTrigger value="combos" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs md:text-sm tracking-wide">Combos</TabsTrigger>
-            <TabsTrigger value="salsas" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs md:text-sm tracking-wide">Salsas</TabsTrigger>
-            <TabsTrigger value="bebidas" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs md:text-sm tracking-wide">Bebidas</TabsTrigger>
-            <TabsTrigger value="preparadas" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs md:text-sm tracking-wide">Preparadas</TabsTrigger>
-            <TabsTrigger value="postres" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs md:text-sm tracking-wide">Postres</TabsTrigger>
+        <Tabs defaultValue="alitas" className="w-full max-w-6xl mx-auto">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 bg-white/5 p-1 h-auto mb-12 rounded-xl gap-1">
+            <TabsTrigger value="alitas" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Alitas</TabsTrigger>
+            <TabsTrigger value="boneless" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Boneless</TabsTrigger>
+            <TabsTrigger value="hamburguesas" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Hamburguesas</TabsTrigger>
+            <TabsTrigger value="papas" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Papas</TabsTrigger>
+            <TabsTrigger value="combos" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Combos</TabsTrigger>
+            <TabsTrigger value="salsas" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Salsas</TabsTrigger>
+            <TabsTrigger value="hotdogs" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Hot Dogs</TabsTrigger>
+            <TabsTrigger value="burritos" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Burritos</TabsTrigger>
+            <TabsTrigger value="tortas" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Tortas</TabsTrigger>
+            <TabsTrigger value="antojitos" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Antojitos</TabsTrigger>
+            <TabsTrigger value="postres" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Postres</TabsTrigger>
+            <TabsTrigger value="bebidas" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Bebidas</TabsTrigger>
+            <TabsTrigger value="preparadas" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Preparadas</TabsTrigger>
+            <TabsTrigger value="menu-extra" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs tracking-wide">Extra</TabsTrigger>
           </TabsList>
 
           <TabsContent value="alitas" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
-            <MenuItem 
-              name="Media Orden" 
-              description="5 piezas de nuestras crujientes alitas bañadas en tu salsa favorita." 
-              price="$120" 
-            />
-            <MenuItem 
-              name="Orden Completa" 
-              description="10 piezas para los que tienen buen apetito. Incluye vegetales y ranch." 
-              price="$190" 
-              highlight
-            />
+            <MenuItem name="Media Orden" description="5 piezas de nuestras crujientes alitas." price="$120" />
+            <MenuItem name="Orden Completa" description="10 piezas. Incluye vegetales y ranch." price="$190" highlight />
           </TabsContent>
 
           <TabsContent value="boneless" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
-             <MenuItem 
-              name="Media Orden" 
-              description="5 piezas de pechuga de pollo empanizada y bañada en salsa." 
-              price="$120" 
-            />
-            <MenuItem 
-              name="Orden Completa" 
-              description="10 piezas de puro sabor sin hueso. Incluye vegetales y ranch." 
-              price="$190" 
-              highlight
-            />
+            <MenuItem name="Media Orden" description="5 piezas de pechuga de pollo empanizada." price="$120" />
+            <MenuItem name="Orden Completa" description="10 piezas. Incluye vegetales y ranch." price="$190" highlight />
+          </TabsContent>
+
+          <TabsContent value="hamburguesas" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
+            <MenuItem name="Clásica" price="$100" />
+            <MenuItem name="Chicken Spicy" price="$140" />
+            <MenuItem name="Especial" price="$120" />
+            <MenuItem name="Country" price="$140" />
+            <MenuItem name="Guacamole" price="$140" />
+            <MenuItem name="Aros BBQ" price="$145" />
+          </TabsContent>
+
+          <TabsContent value="papas" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8">
+              <MenuItem name="Chili" price="$85" />
+              <MenuItem name="Flamin Hot" price="$85" />
+              <MenuItem name="Parmesano" price="$85" />
+              <MenuItem name="Chipotle" price="$85" />
+              <MenuItem name="Papas Pizza" price="$99" />
+              <MenuItem name="Salchipapas" price="$89" />
+              <MenuItem name="Papas con queso" price="$85" />
+              <MenuItem name="Buffalo" price="$85" />
+              <MenuItem name="Queso tocino" price="$85" />
+              <MenuItem name="Dedos de queso" price="$90" />
+              <MenuItem name="Aros de cebolla" price="$90" />
+              <MenuItem name="Papas gajo" price="$80" />
+              <MenuItem name="Papas Curly" price="$80" />
+              <MenuItem name="Papas Crisscut" price="$80" />
+            </div>
           </TabsContent>
 
           <TabsContent value="combos" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
-            <MenuItem name="Yum Mix" description="Combinación perfecta para probar de todo." price="$180" />
-            <MenuItem name="Yum Estudiante" description="La opción económica y llenadora." price="$110" />
-            <MenuItem name="Yum Godín" description="Ideal para tu hora de comida." price="$185" />
-            <MenuItem name="Yum Botanero" description="Para compartir (o no)." price="$389" highlight />
-            <MenuItem name="Yum 1" description="Combo individual básico." price="$165" />
-            <MenuItem name="Yum 2" description="Combo para dos personas." price="$255" />
-            <MenuItem name="Yum 3" description="Combo familiar pequeño." price="$430" />
-            <MenuItem name="Yum 4" description="El festín definitivo." price="$940" />
+            <MenuItem name="Yum Mix" price="$180" />
+            <MenuItem name="Yum Estudiante" price="$110" />
+            <MenuItem name="Yum Godín" price="$185" />
+            <MenuItem name="Yum Botanero" price="$389" highlight />
+            <MenuItem name="Yum 1" price="$165" />
+            <MenuItem name="Yum 2" price="$255" />
+            <MenuItem name="Yum 3" price="$430" />
+            <MenuItem name="Yum 4" price="$940" />
           </TabsContent>
 
           <TabsContent value="salsas" className="animate-in fade-in slide-in-from-bottom-5">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="space-y-4">
-                <h3 className="text-xl font-heading font-bold text-primary uppercase border-b border-primary/20 pb-2">Picante / Picosa</h3>
+                <h3 className="text-xl font-heading font-bold text-primary uppercase border-b border-primary/20 pb-2">Picante</h3>
                 <div className="grid grid-cols-1 gap-2">
                   {salsas.picante.map((s) => (
                     <div key={s.name} className={`bg-white/5 p-3 rounded border border-white/5 flex justify-between items-center ${s.highlight ? 'border-primary/50 bg-primary/5' : ''}`}>
@@ -153,42 +170,65 @@ export default function Menu() {
             </div>
           </TabsContent>
 
-          <TabsContent value="bebidas" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
-            <MenuItem name="Refresco Vidrio" price="$35" />
-            <MenuItem name="Refresco Plástico" price="$40" />
-            <MenuItem name="Agua Natural" price="$30" />
-            <MenuItem 
-              name="Cerveza" 
-              description="Tecate, XX, Indio, Tecate Roja, Amstel Ultra, Bohemia, Miller High Life." 
-              price="$40" 
-            />
+          <TabsContent value="hotdogs" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
+            <MenuItem name="Clásico" price="$35" />
+            <MenuItem name="Chili" price="$45" />
+            <MenuItem name="Especial" price="$50" />
           </TabsContent>
 
-          <TabsContent value="preparadas" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
-            <MenuItem name="Micheladas" price="$150" />
-            <MenuItem name="Chelada" price="$150" />
-            <MenuItem name="Piña Colada" price="$150" />
-            <MenuItem name="Fresa Colada" price="$150" />
-            <MenuItem name="Baby Mango" price="$150" />
-            <MenuItem name="Baby Bre" price="$150" />
-            <MenuItem name="Wisky" price="$150" />
-            <MenuItem name="Vampiro" price="$150" />
-            <MenuItem name="Pitufo" price="$150" />
-            <MenuItem name="Margarita" price="$150" />
-            <MenuItem name="Perla Negra" price="$150" />
+          <TabsContent value="burritos" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
+            <MenuItem name="Clásico" price="$35" />
+            <MenuItem name="Especial" price="$45" />
+          </TabsContent>
+
+          <TabsContent value="tortas" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
+            <MenuItem name="Ternera" price="$80" />
+            <MenuItem name="Del Chavo" price="$80" />
+            <MenuItem name="Especial" price="$90" />
+            <MenuItem name="De la barda" price="$110" />
+            <MenuItem name="Bisteck" price="$80" />
+            <MenuItem name="Sándwich de Pollo" price="$130" highlight />
+          </TabsContent>
+
+          <TabsContent value="antojitos" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
+            <MenuItem name="Flautas" price="$110" />
+            <MenuItem name="Sincronizada (Ternera o Bisteck)" price="$140" />
+            <MenuItem name="Panchos" price="$170" highlight />
           </TabsContent>
 
           <TabsContent value="postres" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
             <MenuItem name="Cheese Cake" price="$100" />
             <MenuItem name="Fresas con Crema" price="$100" />
-            <MenuItem 
-              name="Frape" 
-              description="Sabores: Gansito, Ferrero, Nutela, Pingüino, Oreo, Mazapán." 
-              price="$80" 
-            />
+            <MenuItem name="Frape" description="Gansito, Ferrero, Nutela, Pingüino, Oreo, Mazapán." price="$80" />
+          </TabsContent>
+
+          <TabsContent value="bebidas" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
+            <MenuItem name="Refresco Vidrio" price="$35" />
+            <MenuItem name="Refresco Plástico" price="$40" />
+            <MenuItem name="Agua Natural" price="$30" />
+            <MenuItem name="Cerveza" description="Tecate, XX, Indio, Tecate Roja, Amstel Ultra, Bohemia, Miller High Life." price="$40" />
+          </TabsContent>
+
+          <TabsContent value="preparadas" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8">
+              <MenuItem name="Micheladas" price="$150" />
+              <MenuItem name="Chelada" price="$150" />
+              <MenuItem name="Piña Colada" price="$150" />
+              <MenuItem name="Fresa Colada" price="$150" />
+              <MenuItem name="Baby Mango" price="$150" />
+              <MenuItem name="Baby Bre" price="$150" />
+              <MenuItem name="Wisky" price="$150" />
+              <MenuItem name="Vampiro" price="$150" />
+              <MenuItem name="Pitufo" price="$150" />
+              <MenuItem name="Margarita" price="$150" />
+              <MenuItem name="Perla Negra" price="$150" />
+            </div>
+          </TabsContent>
+
+          <TabsContent value="menu-extra" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
+            <MenuItem name="Costillas Baby Back Rib" price="$220" highlight />
           </TabsContent>
         </Tabs>
-
       </div>
     </section>
   );
