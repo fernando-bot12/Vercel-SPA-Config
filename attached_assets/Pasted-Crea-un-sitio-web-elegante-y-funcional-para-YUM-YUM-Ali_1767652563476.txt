@@ -1,0 +1,257 @@
+Crea un sitio web elegante y funcional para "YUM-YUM Alitas & Boneless", un restaurante especializado en alitas, boneless y combos, con un estilo urbano moderno y enfoque en sabor intenso, ubicado en la ciudad.
+
+DISEÑO Y ESTÉTICA:
+
+Paleta de colores: negro (#000000), amarillo intenso (#FFD700), blanco (#FFFFFF)
+
+Tipografía: Sans-serif moderna y fuerte para títulos, sans-serif limpia para cuerpo de texto
+
+Fotografía gastronómica de alta calidad (alitas, boneless, papas, salsas; usa placeholders de Unsplash)
+
+Animaciones suaves al hacer scroll con fade-in
+
+Espaciado generoso entre secciones para respirar
+
+HERO SECTION:
+
+Imagen fullscreen de alitas o boneless como plato signature
+
+Overlay oscuro sutil para legibilidad (40% opacity)
+
+Título grande y llamativo: "Alitas y Boneless con Sabor Inigualable"
+
+Subtítulo: "El sabor que distingue a Yum-Yum"
+
+Dos botones CTA: "Reserva tu mesa" (amarillo) y "Ver menú" (outline blanco)
+
+Indicador de scroll animado en la parte inferior
+
+SOBRE NOSOTROS:
+
+Layout en dos columnas: texto izquierda, imagen derecha
+
+Breve historia de Yum-Yum (2-3 párrafos)
+
+Filosofía enfocada en sabor, calidad y consistencia
+
+Imagen representativa del equipo o cocina
+
+Estadísticas destacadas con iconos: años de experiencia, clientes satisfechos, sucursales activas
+
+MENÚ INTERACTIVO:
+
+Tabs o botones para categorías: Alitas / Boneless / Combos y Packs / Salsas / Bebidas
+
+Diseño de menú limpio con:
+
+Nombre del producto en tipografía destacada
+
+Descripción breve
+
+Precio alineado a la derecha
+
+Botón "Descargar menú completo" en PDF
+
+Sección de productos destacados de la casa con fotos
+
+MENÚ Y PRECIOS:
+
+ALITAS
+
+Media orden (5 piezas) — $120
+
+Orden completa (10 piezas) — $180
+
+BONELESS
+
+Media orden (5 piezas) — $120
+
+Orden completa (10 piezas) — $180
+
+COMBOS Y PACKS
+
+Yum Mix — $180
+
+Yum Estudiante — $110
+
+Yum Godín — $185
+
+Yum Botanero — $389
+
+Yum 1 — $165
+
+Yum 2 — $255
+
+Yum 3 — $430
+
+Yum 4 — $520
+
+SALSAS
+
+BBQ
+
+Buffalo
+
+Mango Habanero
+
+Lemon Pepper
+
+Tamarindo
+
+Chipotle
+
+Extra salsa — $15
+
+BEBIDAS
+
+Refresco vidrio — $35
+
+Refresco plástico — $40
+
+Agua natural — $30
+
+PROMOCIONES SEMANALES:
+
+Sección destacada visualmente con tarjetas grandes por día.
+
+LUNES YUM
+20 boneless o alitas
+Incluye 4 salsas, vegetales y ranch
+$339
+
+MARTES YUM
+20 boneless o alitas
+Incluye 4 salsas, vegetales y ranch
+$329
+
+MIÉRCOLES YUM
+20 boneless o alitas
+Incluye 4 salsas, vegetales y ranch
+$339
+
+JUEVES YUM
+24 boneless o alitas
+Incluye 3 salsas, vegetales y ranch
+$369
+
+Botón CTA en cada promo: “Ordenar ahora”
+
+GALERÍA:
+
+Grid de fotos tipo masonry (3 columnas en desktop, 1 en mobile)
+
+Combinación de fotos de: platillos, combos Yum, ambiente del restaurante
+
+Lightbox al hacer clic en las imágenes para verlas en grande
+
+Hover effect sutil: zoom ligero + overlay con ícono de expandir
+
+SISTEMA DE RESERVACIONES:
+
+Formulario en tarjeta destacada con fondo blanco sobre imagen de fondo
+
+Campos necesarios:
+
+Fecha (calendario desplegable)
+
+Hora (dropdown con horarios disponibles)
+
+Número de personas (selector numérico)
+
+Nombre completo
+
+Teléfono
+
+Email
+
+Comentarios especiales (opcional)
+
+Botón "Confirmar reservación" con animación al hacer hover
+
+Mensaje de confirmación después del submit con animación
+
+Alternativa: botón de "Llamar para reservar" con número de teléfono
+
+RESEÑAS Y TESTIMONIALES:
+
+Carousel automático de 3-4 testimoniales
+
+Cada testimonial con:
+
+Texto de la reseña (2-3 líneas)
+
+Nombre del cliente
+
+Calificación en estrellas (5 estrellas)
+
+Foto del cliente (opcional, usar avatares si no)
+
+Integración visual con Google Reviews
+
+Botón "Déjanos tu reseña"
+
+UBICACIÓN Y CONTACTO:
+
+Mapa interactivo de Google Maps embebido
+
+Información de contacto organizada:
+
+Dirección física con ícono
+
+Teléfono clickeable para llamar desde móvil
+
+Email con ícono
+
+Horarios de servicio
+
+Links a redes sociales con iconos: Instagram, Facebook, WhatsApp
+
+FOOTER:
+
+Fondo oscuro (#000000)
+
+Tres columnas en desktop:
+
+Logo y breve descripción de Yum-Yum
+
+Links rápidos (Inicio, Menú, Reservaciones, Contacto)
+
+Newsletter signup: "Recibe promociones exclusivas de Yum-Yum"
+
+Redes sociales con íconos en amarillo
+
+Barra inferior con copyright y "Diseñado por [tu nombre]"
+
+Íconos de métodos de pago aceptados
+
+CARACTERÍSTICAS TÉCNICAS:
+
+100% responsive (mobile-first approach)
+
+Smooth scroll entre secciones
+
+Navbar fijo que se hace más pequeño al hacer scroll
+
+Lazy loading en todas las imágenes
+
+Animaciones de entrada en elementos (fade, slide up)
+
+Formularios con validación básica
+
+Hover states en todos los botones y links
+
+Optimización de imágenes para carga rápida
+
+MOBILE CONSIDERATIONS:
+
+Menú hamburguesa animado
+
+Botones de CTA más grandes (fácil de tocar)
+
+Galería en una sola columna
+
+Formulario de reservación en ancho completo
+
+Botones de llamada directa "click to call"
+
+El diseño debe sentirse urbano, moderno y apetitoso, como la experiencia de comer en Yum-Yum. Prioriza la legibilidad, imágenes de calidad y facilidad de navegación.
