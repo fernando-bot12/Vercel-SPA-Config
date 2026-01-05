@@ -7,10 +7,10 @@ import interiorImage2 from "@assets/stock_images/modern_restaurant_in_c0cd2d96.j
 import friendsImage from "@assets/stock_images/group_of_happy_frien_6a13fc47.jpg";
 
 const galleryImages = [
-  { src: heroImage, alt: "Alitas Yum Yum Signature", span: "md:col-span-2 md:row-span-2" },
-  { src: friendsImage, alt: "Amigos disfrutando", span: "md:col-span-1 md:row-span-1" },
-  { src: interiorImage, alt: "Interior Restaurante", span: "md:col-span-1 md:row-span-1" },
-  { src: interiorImage2, alt: "Ambiente Urbano", span: "md:col-span-2 md:row-span-1" },
+  { src: "https://res.cloudinary.com/dsmadkb1y/image/upload/v1767655260/0df698e4-2d98-431a-a5fc-93a5bb785738_bh3na1.jpg", alt: "Yum Yum Signature 1", span: "md:col-span-2 md:row-span-2" },
+  { src: "https://res.cloudinary.com/dsmadkb1y/image/upload/v1767655407/413ffb91-57ef-4b04-b975-473047c29f4c_1_kbcoyy.jpg", alt: "Yum Yum Signature 2", span: "md:col-span-1 md:row-span-1" },
+  { src: "https://res.cloudinary.com/dsmadkb1y/image/upload/v1767655434/WhatsApp_Image_2026-01-05_at_3.53.30_PM_cy1foj.jpg", alt: "Yum Yum Signature 3", span: "md:col-span-1 md:row-span-1" },
+  { src: "https://res.cloudinary.com/dsmadkb1y/image/upload/v1767655422/WhatsApp_Image_2026-01-05_at_3.46.34_PM_hssnba.jpg", alt: "Yum Yum Signature 4", span: "md:col-span-2 md:row-span-1" },
 ];
 
 export default function Gallery() {
