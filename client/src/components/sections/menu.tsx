@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Download, Info } from "lucide-react";
+import { Download, Info, Flame } from "lucide-react";
 
 interface MenuItemProps {
   name: string;
@@ -26,6 +26,32 @@ function MenuItem({ name, description, price, highlight }: MenuItemProps) {
 }
 
 export default function Menu() {
+  const salsas = {
+    picante: [
+      { name: "Verde Jalapeño" },
+      { name: "Berry Morita" },
+      { name: "Bufalo Ranch" },
+      { name: "Brava Yum", extra: "La más picosa", highlight: true },
+      { name: "Mango Habanero" },
+      { name: "Bufalo Cheese" },
+      { name: "Bufalo Lemon" },
+      { name: "Bufalo" }
+    ],
+    dulce: [
+      { name: "BBQ Chipotle" },
+      { name: "BBQ Tamarindo" },
+      { name: "Yumi Yumi" },
+      { name: "BBQ" },
+      { name: "Fresa Chipotle" }
+    ],
+    extra: [
+      { name: "Lemon Pepper" },
+      { name: "Chipotle Ranch" },
+      { name: "Parmesano" },
+      { name: "Parmesano Cremoso" }
+    ]
+  };
+
   return (
     <section id="menu" className="py-24 bg-[#0a0a0a]">
       <div className="container mx-auto px-4">
@@ -39,12 +65,14 @@ export default function Menu() {
         </div>
 
         <Tabs defaultValue="alitas" className="w-full max-w-4xl mx-auto">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 bg-white/5 p-1 h-auto mb-12 rounded-xl">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-7 bg-white/5 p-1 h-auto mb-12 rounded-xl">
             <TabsTrigger value="alitas" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs md:text-sm tracking-wide">Alitas</TabsTrigger>
             <TabsTrigger value="boneless" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs md:text-sm tracking-wide">Boneless</TabsTrigger>
             <TabsTrigger value="combos" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs md:text-sm tracking-wide">Combos</TabsTrigger>
             <TabsTrigger value="salsas" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs md:text-sm tracking-wide">Salsas</TabsTrigger>
             <TabsTrigger value="bebidas" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs md:text-sm tracking-wide">Bebidas</TabsTrigger>
+            <TabsTrigger value="preparadas" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs md:text-sm tracking-wide">Preparadas</TabsTrigger>
+            <TabsTrigger value="postres" className="data-[state=active]:bg-primary data-[state=active]:text-black text-gray-300 py-3 uppercase font-bold text-xs md:text-sm tracking-wide">Postres</TabsTrigger>
           </TabsList>
 
           <TabsContent value="alitas" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
@@ -56,7 +84,7 @@ export default function Menu() {
             <MenuItem 
               name="Orden Completa" 
               description="10 piezas para los que tienen buen apetito. Incluye vegetales y ranch." 
-              price="$180" 
+              price="$190" 
               highlight
             />
           </TabsContent>
@@ -70,7 +98,7 @@ export default function Menu() {
             <MenuItem 
               name="Orden Completa" 
               description="10 piezas de puro sabor sin hueso. Incluye vegetales y ranch." 
-              price="$180" 
+              price="$190" 
               highlight
             />
           </TabsContent>
@@ -83,16 +111,44 @@ export default function Menu() {
             <MenuItem name="Yum 1" description="Combo individual básico." price="$165" />
             <MenuItem name="Yum 2" description="Combo para dos personas." price="$255" />
             <MenuItem name="Yum 3" description="Combo familiar pequeño." price="$430" />
-            <MenuItem name="Yum 4" description="El festín definitivo." price="$520" />
+            <MenuItem name="Yum 4" description="El festín definitivo." price="$940" />
           </TabsContent>
 
-          <TabsContent value="salsas" className="grid grid-cols-2 md:grid-cols-3 gap-4 animate-in fade-in slide-in-from-bottom-5">
-            {["BBQ", "Buffalo", "Mango Habanero", "Lemon Pepper", "Tamarindo", "Chipotle"].map((salsa) => (
-              <div key={salsa} className="bg-white/5 p-4 rounded-lg text-center border border-white/5 hover:border-primary/50 transition-colors">
-                <span className="font-heading font-bold text-white uppercase">{salsa}</span>
+          <TabsContent value="salsas" className="animate-in fade-in slide-in-from-bottom-5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="space-y-4">
+                <h3 className="text-xl font-heading font-bold text-primary uppercase border-b border-primary/20 pb-2">Picante / Picosa</h3>
+                <div className="grid grid-cols-1 gap-2">
+                  {salsas.picante.map((s) => (
+                    <div key={s.name} className={`bg-white/5 p-3 rounded border border-white/5 flex justify-between items-center ${s.highlight ? 'border-primary/50 bg-primary/5' : ''}`}>
+                      <span className={`font-bold uppercase text-sm ${s.highlight ? 'text-primary' : 'text-white'}`}>{s.name}</span>
+                      {s.extra && <span className="text-[10px] bg-primary text-black px-1 font-bold uppercase">{s.extra}</span>}
+                    </div>
+                  ))}
+                </div>
               </div>
-            ))}
-            <div className="col-span-2 md:col-span-3 mt-4 text-center">
+              <div className="space-y-4">
+                <h3 className="text-xl font-heading font-bold text-primary uppercase border-b border-primary/20 pb-2">Dulce</h3>
+                <div className="grid grid-cols-1 gap-2">
+                  {salsas.dulce.map((s) => (
+                    <div key={s.name} className="bg-white/5 p-3 rounded border border-white/5">
+                      <span className="font-bold text-white uppercase text-sm">{s.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-xl font-heading font-bold text-primary uppercase border-b border-primary/20 pb-2">Extra</h3>
+                <div className="grid grid-cols-1 gap-2">
+                  {salsas.extra.map((s) => (
+                    <div key={s.name} className="bg-white/5 p-3 rounded border border-white/5">
+                      <span className="font-bold text-white uppercase text-sm">{s.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="mt-8 text-center">
               <span className="text-primary font-bold">Extra salsa — $15</span>
             </div>
           </TabsContent>
@@ -101,6 +157,35 @@ export default function Menu() {
             <MenuItem name="Refresco Vidrio" price="$35" />
             <MenuItem name="Refresco Plástico" price="$40" />
             <MenuItem name="Agua Natural" price="$30" />
+            <MenuItem 
+              name="Cerveza" 
+              description="Tecate, XX, Indio, Tecate Roja, Amstel Ultra, Bohemia, Miller High Life." 
+              price="$40" 
+            />
+          </TabsContent>
+
+          <TabsContent value="preparadas" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
+            <MenuItem name="Micheladas" price="$150" />
+            <MenuItem name="Chelada" price="$150" />
+            <MenuItem name="Piña Colada" price="$150" />
+            <MenuItem name="Fresa Colada" price="$150" />
+            <MenuItem name="Baby Mango" price="$150" />
+            <MenuItem name="Baby Bre" price="$150" />
+            <MenuItem name="Wisky" price="$150" />
+            <MenuItem name="Vampiro" price="$150" />
+            <MenuItem name="Pitufo" price="$150" />
+            <MenuItem name="Margarita" price="$150" />
+            <MenuItem name="Perla Negra" price="$150" />
+          </TabsContent>
+
+          <TabsContent value="postres" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
+            <MenuItem name="Cheese Cake" price="$100" />
+            <MenuItem name="Fresas con Crema" price="$100" />
+            <MenuItem 
+              name="Frape" 
+              description="Sabores: Gansito, Ferrero, Nutela, Pingüino, Oreo, Mazapán." 
+              price="$80" 
+            />
           </TabsContent>
         </Tabs>
 
