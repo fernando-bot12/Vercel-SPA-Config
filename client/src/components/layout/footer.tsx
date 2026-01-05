@@ -7,7 +7,7 @@ export default function Footer() {
       address: "Avenida Central, entre calle Décima y Onceava",
       phone: "899 454 8738",
       whatsapp: "899 467 6569",
-      hours: "8:00 p.m. a 2:00 a.m."
+      hours: "8:00 a.m. a 2:00 a.m."
     },
     {
       name: "Sucursal Cumbres",

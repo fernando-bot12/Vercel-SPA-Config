@@ -189,11 +189,6 @@ export default function Menu() {
           </TabsContent>
         </Tabs>
 
-        <div className="mt-16 text-center">
-          <Button variant="outline" className="border-white text-white hover:bg-white hover:text-black gap-2 uppercase tracking-wide">
-            <Download size={18} /> Descargar Menú Completo (PDF)
-          </Button>
-        </div>
       </div>
     </section>
   );

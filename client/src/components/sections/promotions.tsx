@@ -71,14 +71,6 @@ export default function Promotions() {
                 </div>
               </div>
 
-              <div className="relative z-10 mt-6">
-                <Button 
-                  onClick={scrollToReservations}
-                  className="w-full bg-white text-black hover:bg-primary font-bold uppercase tracking-wider transition-colors"
-                >
-                  Ordenar Ahora
-                </Button>
-              </div>
             </div>
           ))}
         </div>
