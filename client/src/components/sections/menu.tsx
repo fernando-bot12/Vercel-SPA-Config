@@ -149,7 +149,7 @@ export default function Menu() {
               </div>
             </div>
             <div className="mt-8 text-center">
-              <span className="text-primary font-bold">Extra salsa — $15</span>
+              <span className="text-primary font-bold">Extra salsa — $20</span>
             </div>
           </TabsContent>
 
