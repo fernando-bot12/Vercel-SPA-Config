@@ -38,14 +38,8 @@ export default function Footer() {
               Especialistas en alitas y boneless con el sabor urbano más intenso de la ciudad. Calidad, ambiente y buena vibra en cada bocado.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-primary hover:bg-primary hover:text-black transition-all">
+              <a href="https://www.facebook.com/YumYumAlitasYBoneless?locale=es_LA" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-primary hover:bg-primary hover:text-black transition-all">
                 <Facebook size={20} />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-primary hover:bg-primary hover:text-black transition-all">
-                <Instagram size={20} />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-primary hover:bg-primary hover:text-black transition-all">
-                <Twitter size={20} />
               </a>
             </div>
           </div>

@@ -61,6 +61,9 @@ export default function Navbar() {
 
         {/* CTA & Socials */}
         <div className="hidden md:flex items-center space-x-4">
+          <a href="https://www.facebook.com/YumYumAlitasYBoneless?locale=es_LA" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors">
+            <Facebook size={20} />
+          </a>
           <Button 
             onClick={() => scrollToSection("#reservations")}
             className="bg-primary text-black hover:bg-primary/90 font-bold uppercase tracking-wider"
