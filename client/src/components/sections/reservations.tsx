@@ -61,9 +61,14 @@ export default function Reservations() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    const message = `Hola Yum Yum! Me gustaría hacer una reservación:\n\n*Nombre:* ${values.name}\n*Fecha:* ${format(values.date, "PPP", { locale: es })}\n*Hora:* ${values.time}\n*Personas:* ${values.guests}\n*Teléfono:* ${values.phone}\n*Email:* ${values.email}${values.comments ? `\n*Comentarios:* ${values.comments}` : ""}`;
+    
+    const whatsappUrl = `https://wa.me/528992559363?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank");
+
     toast({
-      title: "¡Reservación Recibida!",
-      description: `Te esperamos el ${format(values.date, "PPP", { locale: es })} a las ${values.time}.`,
+      title: "¡Redirigiendo a WhatsApp!",
+      description: "Por favor envía el mensaje prellenado para confirmar tu reservación.",
       className: "bg-primary text-black border-none",
     });
     form.reset();
