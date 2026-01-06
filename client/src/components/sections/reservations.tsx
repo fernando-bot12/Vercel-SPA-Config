@@ -75,6 +75,12 @@ const formSchema = z.object({
   guests: z.string({
     required_error: "Selecciona el número de personas.",
   }),
+  location: z.string({
+    required_error: "Selecciona el área de preferencia.",
+  }),
+  payment: z.string({
+    required_error: "Selecciona el método de pago.",
+  }),
   comments: z.string().optional(),
 });
 
@@ -107,7 +113,7 @@ export default function Reservations() {
       return;
     }
 
-    const message = `Hola ${sucursal.name}! Me gustaría hacer una reservación:\n\n*Nombre:* ${values.name}\n*Fecha:* ${format(values.date, "PPP", { locale: es })}\n*Hora:* ${values.time}\n*Personas:* ${values.guests}\n*Teléfono:* ${values.phone}\n*Email:* ${values.email}${values.comments ? `\n*Comentarios:* ${values.comments}` : ""}`;
+    const message = `Hola ${sucursal.name}! Me gustaría hacer una reservación:\n\n*Nombre:* ${values.name}\n*Fecha:* ${format(values.date, "PPP", { locale: es })}\n*Hora:* ${values.time}\n*Personas:* ${values.guests}\n*Área:* ${values.location}\n*Pago:* ${values.payment}\n*Teléfono:* ${values.phone}\n*Email:* ${values.email}${values.comments ? `\n*Comentarios:* ${values.comments}` : ""}`;
     
     const whatsappUrl = `https://wa.me/${sucursal.phone}?text=${encodeURIComponent(message)}`;
     
@@ -308,6 +314,49 @@ export default function Reservations() {
                           />
                         </PopoverContent>
                       </Popover>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="location"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-white uppercase font-bold text-xs tracking-wide">Área de preferencia</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className="bg-white/5 border-white/10 text-white focus:border-primary/50">
+                            <SelectValue placeholder="Selecciona área" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent className="bg-zinc-900 border-white/10 text-white">
+                          <SelectItem value="terraza">Terraza</SelectItem>
+                          <SelectItem value="interior">Interior</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="payment"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-white uppercase font-bold text-xs tracking-wide">Método de pago</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className="bg-white/5 border-white/10 text-white focus:border-primary/50">
+                            <SelectValue placeholder="Selecciona método" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent className="bg-zinc-900 border-white/10 text-white">
+                          <SelectItem value="efectivo">Efectivo</SelectItem>
+                          <SelectItem value="tarjeta">Tarjeta</SelectItem>
+                          <SelectItem value="transferencia">Transferencia</SelectItem>
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}
