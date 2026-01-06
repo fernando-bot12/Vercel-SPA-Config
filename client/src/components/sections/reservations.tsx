@@ -96,14 +96,33 @@ export default function Reservations() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     const sucursal = sucursales.find(s => s.id === values.sucursal);
-    const message = `Hola ${sucursal?.name}! Me gustaría hacer una reservación:\n\n*Nombre:* ${values.name}\n*Fecha:* ${format(values.date, "PPP", { locale: es })}\n*Hora:* ${values.time}\n*Personas:* ${values.guests}\n*Teléfono:* ${values.phone}\n*Email:* ${values.email}${values.comments ? `\n*Comentarios:* ${values.comments}` : ""}`;
+    console.log("Selected Sucursal for WhatsApp:", sucursal);
     
-    const whatsappUrl = `https://wa.me/${sucursal?.phone}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
+    if (!sucursal) {
+      toast({
+        title: "Error",
+        description: "No se pudo encontrar la sucursal seleccionada.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const message = `Hola ${sucursal.name}! Me gustaría hacer una reservación:\n\n*Nombre:* ${values.name}\n*Fecha:* ${format(values.date, "PPP", { locale: es })}\n*Hora:* ${values.time}\n*Personas:* ${values.guests}\n*Teléfono:* ${values.phone}\n*Email:* ${values.email}${values.comments ? `\n*Comentarios:* ${values.comments}` : ""}`;
+    
+    const whatsappUrl = `https://wa.me/${sucursal.phone}?text=${encodeURIComponent(message)}`;
+    
+    // Explicitly using a temporary anchor for better cross-browser compatibility
+    const link = document.createElement("a");
+    link.href = whatsappUrl;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 
     toast({
       title: "¡Redirigiendo a WhatsApp!",
-      description: `Enviando reservación a ${sucursal?.name}.`,
+      description: `Enviando reservación a ${sucursal.name}.`,
       className: "bg-primary text-black border-none",
     });
     form.reset();
