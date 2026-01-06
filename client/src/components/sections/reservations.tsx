@@ -32,7 +32,37 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import interiorImage from "@assets/stock_images/modern_restaurant_in_f3ea70ed.jpg";
 
+const sucursales = [
+  {
+    id: "granjas",
+    name: "Sucursal Granjas",
+    address: "Avenida Central, entre calle Décima y Onceava",
+    phone: "528994676569", // WhatsApp preferido para reservación
+    hours: { start: 20, end: 2 }, // 8 PM a 2 AM
+    timeSlots: ["20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30", "00:00", "00:30", "01:00", "01:30"]
+  },
+  {
+    id: "cumbres",
+    name: "Sucursal Cumbres",
+    address: "Poniente 1, esquina con Calle 1",
+    phone: "528991557828",
+    hours: { start: 15, end: 0 }, // 3 PM a 12 AM
+    timeSlots: ["15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30"]
+  },
+  {
+    id: "torres",
+    name: "Sucursal Torres",
+    address: "Ampliación Tamaulipas, Av. Reynosa #1311",
+    phone: "528991555564",
+    hours: { start: 15, end: 0 }, // 3 PM a 12 AM
+    timeSlots: ["15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30"]
+  }
+];
+
 const formSchema = z.object({
+  sucursal: z.string({
+    required_error: "Por favor selecciona una sucursal.",
+  }),
   name: z.string().min(2, "El nombre debe tener al menos 2 caracteres."),
   email: z.string().email("Correo electrónico inválido."),
   phone: z.string().min(10, "El teléfono debe tener al menos 10 dígitos."),
@@ -53,6 +83,7 @@ export default function Reservations() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      sucursal: "",
       name: "",
       email: "",
       phone: "",
@@ -60,15 +91,19 @@ export default function Reservations() {
     },
   });
 
+  const selectedSucursalId = form.watch("sucursal");
+  const selectedSucursal = sucursales.find(s => s.id === selectedSucursalId);
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    const message = `Hola Yum Yum! Me gustaría hacer una reservación:\n\n*Nombre:* ${values.name}\n*Fecha:* ${format(values.date, "PPP", { locale: es })}\n*Hora:* ${values.time}\n*Personas:* ${values.guests}\n*Teléfono:* ${values.phone}\n*Email:* ${values.email}${values.comments ? `\n*Comentarios:* ${values.comments}` : ""}`;
+    const sucursal = sucursales.find(s => s.id === values.sucursal);
+    const message = `Hola ${sucursal?.name}! Me gustaría hacer una reservación:\n\n*Nombre:* ${values.name}\n*Fecha:* ${format(values.date, "PPP", { locale: es })}\n*Hora:* ${values.time}\n*Personas:* ${values.guests}\n*Teléfono:* ${values.phone}\n*Email:* ${values.email}${values.comments ? `\n*Comentarios:* ${values.comments}` : ""}`;
     
-    const whatsappUrl = `https://wa.me/528992559363?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/${sucursal?.phone}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
 
     toast({
       title: "¡Redirigiendo a WhatsApp!",
-      description: "Por favor envía el mensaje prellenado para confirmar tu reservación.",
+      description: `Enviando reservación a ${sucursal?.name}.`,
       className: "bg-primary text-black border-none",
     });
     form.reset();
@@ -91,12 +126,64 @@ export default function Reservations() {
             <h2 className="text-3xl md:text-5xl font-heading font-bold text-white uppercase mb-2">
               Reserva tu <span className="text-primary">Mesa</span>
             </h2>
-            <p className="text-gray-400">Asegura tu lugar en Yum-Yum.</p>
+            <p className="text-gray-400">Selecciona tu sucursal favorita.</p>
           </div>
 
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <FormField
+                  control={form.control}
+                  name="sucursal"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-white uppercase font-bold text-xs tracking-wide">Sucursal</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className="bg-white/5 border-white/10 text-white focus:border-primary/50">
+                            <SelectValue placeholder="Selecciona sucursal" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent className="bg-zinc-900 border-white/10 text-white">
+                          {sucursales.map((s) => (
+                            <SelectItem key={s.id} value={s.id}>
+                              {s.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="time"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-white uppercase font-bold text-xs tracking-wide">Hora</FormLabel>
+                      <Select 
+                        onValueChange={field.onChange} 
+                        defaultValue={field.value}
+                        disabled={!selectedSucursalId}
+                      >
+                        <FormControl>
+                          <SelectTrigger className="bg-white/5 border-white/10 text-white focus:border-primary/50">
+                            <SelectValue placeholder={selectedSucursalId ? "Selecciona hora" : "Primero elige sucursal"} />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent className="bg-zinc-900 border-white/10 text-white h-48">
+                          {selectedSucursal?.timeSlots.map((time) => (
+                            <SelectItem key={time} value={time}>
+                              {time}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 <FormField
                   control={form.control}
                   name="name"
@@ -202,30 +289,6 @@ export default function Reservations() {
                           />
                         </PopoverContent>
                       </Popover>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="time"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-white uppercase font-bold text-xs tracking-wide">Hora</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger className="bg-white/5 border-white/10 text-white focus:border-primary/50">
-                            <SelectValue placeholder="Selecciona hora" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent className="bg-zinc-900 border-white/10 text-white h-48">
-                          {["13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00"].map((time) => (
-                            <SelectItem key={time} value={time}>
-                              {time}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}
