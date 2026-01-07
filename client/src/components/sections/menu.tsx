@@ -236,6 +236,7 @@ export default function Menu() {
           <TabsContent value="bebidas" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
             <MenuItem name="Refresco Vidrio" price="$35" />
             <MenuItem name="Refresco Plástico" price="$40" />
+            <MenuItem name="Agua de Sabor" description="Mango, Fresalimon, Pepinolimon. Horchata, Jamaica, Tamarindo." price="$35" />
             <MenuItem name="Agua Natural" price="$30" />
             <MenuItem name="Cerveza" description="Tecate, XX, Indio, Tecate Roja, Amstel Ultra, Bohemia, Miller High Life." price="$40" />
           </TabsContent>
