@@ -118,7 +118,7 @@ export default function Menu() {
               <MenuItem name="Aros de cebolla" price="$90" />
               <MenuItem name="Papas gajo" price="$80" />
               <MenuItem name="Papas Curly" price="$80" />
-              <MenuItem name="Papas Crisscut" price="$80" />
+              <MenuItem name="Papas Crisscut" price="$90" />
             </div>
           </TabsContent>
 
