@@ -20,11 +20,11 @@ export default function Home() {
         <Menu />
         <Promotions />
         <Gallery />
-        <Reservations />
 
         {/* 🔥 NUEVA SECCIÓN DE TRANSFERENCIAS */}
         <Transferencias />
 
+        <Reservations />
         <Reviews />
       </main>
 
