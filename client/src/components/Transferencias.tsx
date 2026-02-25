@@ -10,10 +10,10 @@ export default function Transferencias() {
 
   const enviarWhatsApp = () => {
     const mensaje = `
-🔥 CONFIRMACIÓN DE TRANSFERENCIA 🔥
+🔥 REGISTRO DE PAGO 🔥
 
 🏪 Sucursal: ${sucursal}
-🧾 Orden: ${orden}
+🧾 Número de orden: ${orden}
 👤 Nombre: ${nombre}
 📱 WhatsApp: ${whatsapp}
 💰 Monto: $${monto}
@@ -27,20 +27,62 @@ export default function Transferencias() {
 
   return (
     <section className="transferencias-section">
+      <div className="transferencias-logo">
+        <img src="/logo.png" alt="Yum Yum" />
+      </div>
+
       <div className="transferencias-card">
         <h2>🔥 REGISTRO DE PAGO 🔥</h2>
         <p>Selecciona tu sucursal e ingresa los datos de tu transferencia.</p>
 
+        <label>Selecciona Sucursal</label>
         <select value={sucursal} onChange={(e) => setSucursal(e.target.value)}>
           <option>Sucursal Granjas</option>
           <option>Sucursal Cumbres</option>
+          <option>Sucursal Torres</option>
         </select>
 
-        <input placeholder="Número de orden" value={orden} onChange={e => setOrden(e.target.value)} />
-        <input placeholder="Nombre completo" value={nombre} onChange={e => setNombre(e.target.value)} />
-        <input placeholder="WhatsApp" value={whatsapp} onChange={e => setWhatsapp(e.target.value)} />
-        <input type="number" placeholder="Monto $" value={monto} onChange={e => setMonto(e.target.value)} />
-        <input placeholder="Referencia / Clave de rastreo" value={referencia} onChange={e => setReferencia(e.target.value)} />
+        <label>Número de Orden</label>
+        <input
+          placeholder="Ej. 000"
+          value={orden}
+          onChange={(e) => setOrden(e.target.value)}
+        />
+
+        <label>Nombre Completo</label>
+        <input
+          placeholder="Tu nombre"
+          value={nombre}
+          onChange={(e) => setNombre(e.target.value)}
+        />
+
+        <div className="transferencias-row">
+          <div>
+            <label>WhatsApp</label>
+            <input
+              placeholder="5512345678"
+              value={whatsapp}
+              onChange={(e) => setWhatsapp(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <label>Monto ($)</label>
+            <input
+              type="number"
+              placeholder="0"
+              value={monto}
+              onChange={(e) => setMonto(e.target.value)}
+            />
+          </div>
+        </div>
+
+        <label>Clave de Rastreo / Referencia</label>
+        <input
+          placeholder="Ej. 1234567"
+          value={referencia}
+          onChange={(e) => setReferencia(e.target.value)}
+        />
 
         <button onClick={enviarWhatsApp}>
           Confirmar transferencia
