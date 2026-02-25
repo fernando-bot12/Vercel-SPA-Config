@@ -7,11 +7,13 @@ import Promotions from "@/components/sections/promotions";
 import Gallery from "@/components/sections/gallery";
 import Reservations from "@/components/sections/reservations";
 import Reviews from "@/components/sections/reviews";
+import Transferencias from "@/components/Transferencias";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white selection:bg-primary selection:text-black">
       <Navbar />
+
       <main>
         <Hero />
         <About />
@@ -19,8 +21,13 @@ export default function Home() {
         <Promotions />
         <Gallery />
         <Reservations />
+
+        {/* 🔥 NUEVA SECCIÓN DE TRANSFERENCIAS */}
+        <Transferencias />
+
         <Reviews />
       </main>
+
       <Footer />
     </div>
   );
