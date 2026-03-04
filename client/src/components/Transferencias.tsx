@@ -46,25 +46,30 @@ export default function Transferencias() {
       description: "Tu información fue enviada correctamente",
     });
 
-    const mensaje = `
-🔥 REGISTRO DE PAGO - YUM YUM
+    const mensajeWhatsApp = `
+🧾 *CONFIRMACIÓN DE TRANSFERENCIA – YUM YUM*
 
-Sucursal: ${form.sucursal}
-Orden: ${form.orden}
-Nombre: ${form.nombre}
-WhatsApp: ${form.whatsapp}
-Monto: $${form.monto}
-Referencia: ${form.referencia}
-`;
+🏪 *Sucursal:* ${form.sucursal}
+📦 *Orden:* ${form.orden}
+👤 *Cliente:* ${form.nombre}
+📱 *WhatsApp:* ${form.whatsapp}
 
-    const telefono = "528992559363"; // 👈 CAMBIA AQUÍ EL NÚMERO
-    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+💰 *Monto:* $${form.monto}
+🔑 *Referencia:* ${form.referencia}
+
+✅ Pago realizado por transferencia.
+`.trim();
+
+    const telefono = "528992559363"; // 8992559363
+    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(
+      mensajeWhatsApp
+    )}`;
 
     window.open(url, "_blank");
   }
 
   return (
-    <section className="py-24 flex justify-center">
+    <section id="transferencias" className="py-24 flex justify-center">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -72,9 +77,15 @@ Referencia: ${form.referencia}
         viewport={{ once: true }}
         className="w-full max-w-lg bg-card p-8 rounded-xl shadow-xl border border-border"
       >
-        <h2 className="text-2xl font-heading text-gold text-center mb-2">
-          🔥 REGISTRO DE PAGO 🔥
+        {/* YUM YUM TEXTO */}
+        <h1 className="text-4xl md:text-5xl font-heading text-primary text-center tracking-widest mb-2">
+          YUM YUM
+        </h1>
+
+        <h2 className="text-2xl font-heading text-center text-primary mb-2">
+          REGISTRO DE PAGO
         </h2>
+
         <p className="text-center text-muted-foreground mb-6">
           Selecciona tu sucursal e ingresa los datos de tu transferencia
         </p>
@@ -93,7 +104,6 @@ Referencia: ${form.referencia}
             <option value="Sucursal Torres">Sucursal Torres</option>
           </select>
 
-          {/* Orden */}
           <input
             type="text"
             placeholder="Número de orden"
@@ -103,7 +113,6 @@ Referencia: ${form.referencia}
             onChange={(e) => setForm({ ...form, orden: e.target.value })}
           />
 
-          {/* Nombre */}
           <input
             type="text"
             placeholder="Nombre completo"
@@ -113,7 +122,6 @@ Referencia: ${form.referencia}
             onChange={(e) => setForm({ ...form, nombre: e.target.value })}
           />
 
-          {/* WhatsApp */}
           <input
             type="tel"
             placeholder="WhatsApp"
@@ -123,7 +131,6 @@ Referencia: ${form.referencia}
             onChange={(e) => setForm({ ...form, whatsapp: e.target.value })}
           />
 
-          {/* Monto */}
           <input
             type="number"
             placeholder="Monto ($)"
@@ -133,21 +140,22 @@ Referencia: ${form.referencia}
             onChange={(e) => setForm({ ...form, monto: e.target.value })}
           />
 
-          {/* Referencia */}
           <input
             type="text"
             placeholder="Clave de rastreo / referencia"
             className={`w-full bg-secondary p-3 rounded ${
               errors.referencia ? "border border-red-500" : ""
             }`}
-            onChange={(e) => setForm({ ...form, referencia: e.target.value })}
+            onChange={(e) =>
+              setForm({ ...form, referencia: e.target.value })
+            }
           />
 
           <button
             type="submit"
             className="w-full bg-gold text-black font-bold py-3 rounded hover:opacity-90 transition"
           >
-            Enviar transferencia
+            Confirmar transferencia
           </button>
         </form>
       </motion.div>
