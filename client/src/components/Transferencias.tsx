@@ -46,33 +46,24 @@ export default function Transferencias() {
       description: "Tu información fue enviada correctamente",
     });
 
-    const mensajeWhatsApp = `
-🧾 *CONFIRMACIÓN DE TRANSFERENCIA – YUM YUM*
+    const mensaje = `
+🔥 REGISTRO DE PAGO - YUM YUM
 
-🏪 *Sucursal:* ${form.sucursal}
-📦 *Orden:* ${form.orden}
-👤 *Cliente:* ${form.nombre}
-📱 *WhatsApp:* ${form.whatsapp}
+Sucursal: ${form.sucursal}
+Orden: ${form.orden}
+Nombre: ${form.nombre}
+WhatsApp: ${form.whatsapp}
+Monto: $${form.monto}
+Referencia: ${form.referencia}
+    `;
 
-💰 *Monto:* $${form.monto}
-🔑 *Referencia:* ${form.referencia}
-
-✅ Pago realizado por transferencia.
-`.trim();
-
-    const telefono = "528992559363";
-    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(
-      mensajeWhatsApp
-    )}`;
-
+    const telefono = "528992559363"; // 👈 CAMBIA AQUÍ EL NÚMERO
+    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, "_blank");
   }
 
   return (
-    <section
-      id="transferencias"  {/* IMPORTANT: permite navegación desde el Navbar */}
-      className="py-24 flex justify-center"
-    >
+    <section className="py-24 flex justify-center">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -80,25 +71,23 @@ export default function Transferencias() {
         viewport={{ once: true }}
         className="w-full max-w-lg bg-card p-8 rounded-xl shadow-xl border border-border"
       >
-        {/* YUM YUM como texto grande naranja */}
-        <h1 className="text-4xl md:text-5xl font-heading text-primary text-center tracking-widest mb-2">
-          YUM YUM
-        </h1>
-
-        <h2 className="text-2xl font-heading text-center text-primary mb-2">
-          REGISTRO DE PAGO
+        <h2 className="text-2xl font-heading text-gold text-center mb-2">
+          🔥 REGISTRO DE PAGO 🔥
         </h2>
 
         <p className="text-center text-muted-foreground mb-6">
-          Selecciona tu sucursal e ingresa los datos de tu transferencia.
+          Selecciona tu sucursal e ingresa los datos de tu transferencia
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Sucursal */}
           <select
             className={`w-full bg-secondary p-3 rounded ${
               errors.sucursal ? "border border-red-500" : ""
             }`}
-            onChange={(e) => setForm({ ...form, sucursal: e.target.value })}
+            onChange={(e) =>
+              setForm({ ...form, sucursal: e.target.value })
+            }
           >
             <option value="">Selecciona sucursal</option>
             <option value="Sucursal Granjas">Sucursal Granjas</option>
@@ -106,42 +95,55 @@ export default function Transferencias() {
             <option value="Sucursal Torres">Sucursal Torres</option>
           </select>
 
+          {/* Orden */}
           <input
             type="text"
             placeholder="Número de orden"
             className={`w-full bg-secondary p-3 rounded ${
               errors.orden ? "border border-red-500" : ""
             }`}
-            onChange={(e) => setForm({ ...form, orden: e.target.value })}
+            onChange={(e) =>
+              setForm({ ...form, orden: e.target.value })
+            }
           />
 
+          {/* Nombre */}
           <input
             type="text"
             placeholder="Nombre completo"
             className={`w-full bg-secondary p-3 rounded ${
               errors.nombre ? "border border-red-500" : ""
             }`}
-            onChange={(e) => setForm({ ...form, nombre: e.target.value })}
+            onChange={(e) =>
+              setForm({ ...form, nombre: e.target.value })
+            }
           />
 
+          {/* WhatsApp */}
           <input
             type="tel"
             placeholder="WhatsApp"
             className={`w-full bg-secondary p-3 rounded ${
               errors.whatsapp ? "border border-red-500" : ""
             }`}
-            onChange={(e) => setForm({ ...form, whatsapp: e.target.value })}
+            onChange={(e) =>
+              setForm({ ...form, whatsapp: e.target.value })
+            }
           />
 
+          {/* Monto */}
           <input
             type="number"
             placeholder="Monto ($)"
             className={`w-full bg-secondary p-3 rounded ${
               errors.monto ? "border border-red-500" : ""
             }`}
-            onChange={(e) => setForm({ ...form, monto: e.target.value })}
+            onChange={(e) =>
+              setForm({ ...form, monto: e.target.value })
+            }
           />
 
+          {/* Referencia */}
           <input
             type="text"
             placeholder="Clave de rastreo / referencia"
@@ -157,7 +159,7 @@ export default function Transferencias() {
             type="submit"
             className="w-full bg-gold text-black font-bold py-3 rounded hover:opacity-90 transition"
           >
-            Confirmar transferencia
+            Enviar transferencia
           </button>
         </form>
       </motion.div>
