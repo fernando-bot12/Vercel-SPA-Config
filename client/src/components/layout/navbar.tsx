@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "wouter";
-import { Menu, X, MapPin, Phone, Instagram, Facebook } from "lucide-react";
+import { Menu, X, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -22,6 +21,7 @@ export default function Navbar() {
     { name: "Menú", href: "#menu" },
     { name: "Promociones", href: "#promos" },
     { name: "Galería", href: "#gallery" },
+    { name: "Transferencias", href: "#transferencias" }, // ✅ NUEVO
     { name: "Contacto", href: "#contact" },
   ];
 
@@ -37,7 +37,9 @@ export default function Navbar() {
     <nav
       className={cn(
         "fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-transparent",
-        isScrolled ? "bg-black/90 backdrop-blur-md border-white/10 py-2" : "bg-transparent py-4"
+        isScrolled
+          ? "bg-black/90 backdrop-blur-md border-white/10 py-2"
+          : "bg-transparent py-4"
       )}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -61,10 +63,15 @@ export default function Navbar() {
 
         {/* CTA & Socials */}
         <div className="hidden md:flex items-center space-x-4">
-          <a href="https://www.facebook.com/YumYumAlitasYBoneless?locale=es_LA" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors">
+          <a
+            href="https://www.facebook.com/YumYumAlitasYBoneless?locale=es_LA"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-primary transition-colors"
+          >
             <Facebook size={20} />
           </a>
-          <Button 
+          <Button
             onClick={() => scrollToSection("#reservations")}
             className="bg-primary text-black hover:bg-primary/90 font-bold uppercase tracking-wider"
           >
@@ -93,7 +100,7 @@ export default function Navbar() {
               {link.name}
             </button>
           ))}
-          <Button 
+          <Button
             onClick={() => scrollToSection("#reservations")}
             className="w-full bg-primary text-black font-bold uppercase"
           >
