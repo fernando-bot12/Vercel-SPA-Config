@@ -188,3 +188,7 @@
   transform: translateY(-1px);
   box-shadow: 0 0 20px hsl(var(--primary) / 0.6);
 }
+  /* Parche para ocultar la imagen rota del logo */
+.transferencias-logo {
+  display: none !important;
+}
