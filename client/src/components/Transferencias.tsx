@@ -60,7 +60,7 @@ export default function Transferencias() {
 ✅ Pago realizado por transferencia.
 `.trim();
 
-    const telefono = "528992559363"; // 8992559363
+    const telefono = "528992559363";
     const url = `https://wa.me/${telefono}?text=${encodeURIComponent(
       mensajeWhatsApp
     )}`;
@@ -69,7 +69,10 @@ export default function Transferencias() {
   }
 
   return (
-    <section id="transferencias" className="py-24 flex justify-center">
+    <section
+      id="transferencias"  {/* IMPORTANT: permite navegación desde el Navbar */}
+      className="py-24 flex justify-center"
+    >
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -77,7 +80,7 @@ export default function Transferencias() {
         viewport={{ once: true }}
         className="w-full max-w-lg bg-card p-8 rounded-xl shadow-xl border border-border"
       >
-        {/* YUM YUM TEXTO */}
+        {/* YUM YUM como texto grande naranja */}
         <h1 className="text-4xl md:text-5xl font-heading text-primary text-center tracking-widest mb-2">
           YUM YUM
         </h1>
@@ -87,11 +90,10 @@ export default function Transferencias() {
         </h2>
 
         <p className="text-center text-muted-foreground mb-6">
-          Selecciona tu sucursal e ingresa los datos de tu transferencia
+          Selecciona tu sucursal e ingresa los datos de tu transferencia.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Sucursal */}
           <select
             className={`w-full bg-secondary p-3 rounded ${
               errors.sucursal ? "border border-red-500" : ""
