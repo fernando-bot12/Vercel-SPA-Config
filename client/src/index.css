@@ -102,11 +102,7 @@
   align-items: center;
 }
 
-.transferencias-logo img {
-  width: 110px;
-  margin-bottom: 1.5rem;
-  filter: drop-shadow(0 0 14px hsl(var(--primary)));
-}
+
 
 .transferencias-card {
   width: 100%;
