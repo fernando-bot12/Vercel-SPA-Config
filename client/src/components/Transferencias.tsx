@@ -1,123 +1,92 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Camera, Upload, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-
-type FormState = {
-  sucursal: string;
-  orden: string;
-  nombre: string;
-  whatsapp: string;
-  monto: string;
-  referencia: string;
-};
 
 export default function Transferencias() {
   const { toast } = useToast();
-  const [form, setForm] = useState<FormState>({
-    sucursal: "",
-    orden: "",
-    nombre: "",
-    whatsapp: "",
-    monto: "",
-    referencia: "",
-  });
+  const [file, setFile] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Aquí iría tu lógica de envío
-    toast({
-      title: "✅ Transferencia enviada",
-      description: "Estamos validando tu pago. ¡Gracias!",
-    });
+    setLoading(true);
+    
+    // Simulación de envío a tu backend PHP/MySQL
+    setTimeout(() => {
+      setLoading(false);
+      toast({
+        title: "✅ ¡Recibido!",
+        description: "Tu comprobante está en revisión. ¡Gracias!",
+      });
+      setFile(null);
+    }, 1500);
   };
 
   return (
     <section id="transferencias" className="transferencias-section">
-      {/* Logo con animación de entrada suave */}
       <motion.div 
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="transferencias-logo"
-      >
-        <img src="/yumyum.jpg" alt="Yum Yum Logo" />
-      </motion.div>
-
-      {/* Card principal con Glassmorphism y Animación */}
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
         className="transferencias-card"
       >
-        <h2>🔥 Registro de Pago 🔥</h2>
-        <p>Selecciona tu sucursal e ingresa los datos de tu transferencia.</p>
+        <h2>⚡ Registro Rápido ⚡</h2>
+        <p>Sube tu ticket o captura para validar tu pedido al instante.</p>
 
-        <form onSubmit={handleSubmit}>
-          <label>Selecciona Sucursal</label>
-          <select 
-            required 
-            value={form.sucursal}
-            onChange={(e) => setForm({...form, sucursal: e.target.value})}
-          >
-            <option value="">Seleccionar sucursal...</option>
-            <option value="granjas">Sucursal Granjas</option>
-            <option value="cumbres">Sucursal Cumbres</option>
-          </select>
-
-          <label>Número de Orden</label>
-          <input 
-            type="text" 
-            placeholder="Ej. 000" 
-            required 
-            value={form.orden}
-            onChange={(e) => setForm({...form, orden: e.target.value})}
-          />
-
-          <label>Nombre Completo</label>
-          <input 
-            type="text" 
-            placeholder="Tu nombre" 
-            required 
-            value={form.nombre}
-            onChange={(e) => setForm({...form, nombre: e.target.value})}
-          />
-
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div className="transferencias-row">
             <div>
-              <label>WhatsApp</label>
-              <input 
-                type="tel" 
-                placeholder="5512345678" 
-                required 
-                value={form.whatsapp}
-                onChange={(e) => setForm({...form, whatsapp: e.target.value})}
-              />
+              <label>Sucursal</label>
+              <select required className="w-full">
+                <option value="cumbres">Cumbres</option>
+                <option value="granjas">Granjas</option>
+              </select>
             </div>
             <div>
-              <label>Monto ($)</label>
-              <input 
-                type="number" 
-                placeholder="0" 
-                required 
-                value={form.monto}
-                onChange={(e) => setForm({...form, monto: e.target.value})}
-              />
+              <label># Orden</label>
+              <input type="number" placeholder="000" required />
             </div>
           </div>
 
-          <label>Clave de Rastreo / Referencia</label>
-          <input 
-            type="text" 
-            placeholder="Ej. 1234567" 
-            required 
-            value={form.referencia}
-            onChange={(e) => setForm({...form, referencia: e.target.value})}
-          />
+          {/* Área de carga de archivos */}
+          <div className="relative">
+            <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-primary/30 rounded-xl bg-primary/5 hover:bg-primary/10 transition-all cursor-pointer">
+              <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                {file ? (
+                  <>
+                    <CheckCircle2 className="text-primary mb-2" size={40} />
+                    <p className="text-sm text-white">{file.name}</p>
+                  </>
+                ) : (
+                  <>
+                    <Camera className="text-primary/60 mb-2" size={40} />
+                    <p className="text-sm text-gray-400">Toca para tomar foto o subir ticket</p>
+                  </>
+                )}
+              </div>
+              <input 
+                type="file" 
+                accept="image/*" 
+                capture="environment" // Esto abre la cámara directo en móviles
+                className="hidden" 
+                onChange={handleFileChange}
+                required
+              />
+            </label>
+          </div>
 
-          <button type="submit">
-            Confirmar Transferencia
+          <button 
+            type="submit" 
+            disabled={loading}
+            className="flex items-center justify-center gap-2"
+          >
+            {loading ? "Enviando..." : <><Upload size={20} /> Enviar Comprobante</>}
           </button>
         </form>
       </motion.div>
