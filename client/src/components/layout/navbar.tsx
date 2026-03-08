@@ -21,7 +21,7 @@ export default function Navbar() {
     { name: "Menú", href: "#menu" },
     { name: "Promociones", href: "#promos" },
     { name: "Galería", href: "#gallery" },
-    { name: "Transferencias", href: "#transferencias" }, // ✅ NUEVO
+    { name: "Transferencias", href: "#transferencias" }, // ✅ Conectado
     { name: "Contacto", href: "#contact" },
   ];
 
