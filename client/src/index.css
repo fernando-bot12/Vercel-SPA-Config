@@ -75,15 +75,11 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    /* Mantenemos tu textura de ruido base */
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     @apply font-heading uppercase tracking-wide;
   }
 }
@@ -97,95 +93,135 @@
 }
 
 /* ============================= */
-/* 💳 TRANSFERENCIAS SECTION */
+/* 💳 TRANSFERENCIAS SECTION     */
 /* ============================= */
 
 .transferencias-section {
-  padding: 6rem 1rem;
+  padding: 10rem 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+  /* Fondo con degradado radial para que el centro brille sutilmente */
+  background: radial-gradient(circle at center, #111 0%, #000 100%);
+}
+
+/* Decoración: Círculos de luz difusos para llenar el "vacio" */
+.transferencias-section::after {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: hsla(51, 100%, 50%, 0.05);
+  filter: blur(100px);
+  border-radius: 50%;
+  z-index: 0;
 }
 
 .transferencias-logo img {
-  width: 110px;
-  margin-bottom: 1.5rem;
-  filter: drop-shadow(0 0 14px hsl(var(--primary)));
+  width: 120px;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2;
+  /* Sombra de neón basada en tu logo */
+  filter: drop-shadow(0 0 15px hsl(var(--primary) / 0.5));
 }
 
 .transferencias-card {
   width: 100%;
-  max-width: 420px;
-  background: hsl(var(--card));
-  border-radius: 1rem;
-  padding: 2rem;
-  box-shadow:
-    0 0 25px hsl(var(--primary) / 0.35),
-    inset 0 0 0 1px hsl(var(--border));
+  max-width: 450px;
+  background: rgba(15, 15, 15, 0.85);
+  backdrop-filter: blur(10px); /* Efecto cristal */
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  position: relative;
+  z-index: 2;
+  /* Glow exterior suave */
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.7),
+    0 0 20px hsla(51, 100%, 50%, 0.1);
 }
 
 .transferencias-card h2 {
   text-align: center;
   color: hsl(var(--primary));
-  margin-bottom: 0.25rem;
+  font-size: 1.85rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
 }
 
 .transferencias-card p {
   text-align: center;
-  font-size: 0.875rem;
-  color: hsl(var(--muted-foreground));
-  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 2rem;
+  line-height: 1.5;
 }
 
 .transferencias-card label {
   display: block;
-  font-size: 0.75rem;
-  margin-bottom: 0.25rem;
-  color: hsl(var(--muted-foreground));
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  color: #666;
 }
 
 .transferencias-card input,
 .transferencias-card select {
   width: 100%;
-  padding: 0.6rem 0.75rem;
-  margin-bottom: 0.75rem;
-  border-radius: 0.5rem;
-  border: 1px solid hsl(var(--border));
-  background: hsl(var(--secondary));
-  color: hsl(var(--foreground));
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  transition: all 0.2s ease;
 }
 
 .transferencias-card input:focus,
 .transferencias-card select:focus {
   outline: none;
   border-color: hsl(var(--primary));
-  box-shadow: 0 0 0 1px hsl(var(--primary));
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px hsla(51, 100%, 50%, 0.2);
 }
 
 .transferencias-row {
   display: flex;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .transferencias-row > div {
   flex: 1;
 }
 
+/* Botón con estilo "Yum-Yum" */
 .transferencias-card button {
   width: 100%;
-  padding: 0.75rem;
-  margin-top: 0.75rem;
-  border-radius: 9999px;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 0.75rem;
   background: hsl(var(--primary));
-  color: hsl(var(--primary-foreground));
-  font-weight: 700;
+  color: #000;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  letter-spacing: 0.1em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .transferencias-card button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 0 20px hsl(var(--primary) / 0.6);
+  filter: brightness(1.1);
+  box-shadow: 0 0 25px hsla(51, 100%, 50%, 0.5);
+  transform: translateY(-2px);
 }
- 
+
+.transferencias-card button:active {
+  transform: translateY(0);
+}
