@@ -16,7 +16,6 @@ export default function Transferencias() {
     e.preventDefault();
     setLoading(true);
 
-    // Texto plano sin emojis ni simbolos especiales para evitar los rombos con "?"
     const mensajeTexto = 
       `NUEVO REGISTRO DE PAGO - YUM YUM\n\n` +
       `Cliente: ${nombre}\n` +
@@ -26,26 +25,26 @@ export default function Transferencias() {
       `--------------------------\n` +
       `Envio mi foto de pago abajo`;
 
-    // Codificacion segura para la URL
     const mensajeFinal = encodeURIComponent(mensajeTexto);
     const numeroWhatsApp = "528994698833"; 
 
     setTimeout(() => {
       window.open(`https://wa.me/${numeroWhatsApp}?text=${mensajeFinal}`, "_blank");
       setLoading(false);
-      
       toast({
         title: "WhatsApp abierto",
-        description: "Recuerda adjuntar tu captura de pantalla.",
+        description: "Adjunta tu foto y envía el mensaje.",
       });
     }, 800);
   };
 
   return (
-    <section className="min-h-screen bg-[#0a0a0a] py-10 px-4">
+    // SE AGREGA id="transferencias" PARA QUE EL NAV FUNCIONE
+    <section id="transferencias" className="min-h-screen bg-[#0a0a0a] py-10 px-4 scroll-mt-20">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         className="max-w-md mx-auto bg-[#141414] border border-yellow-500/20 rounded-2xl p-6 shadow-2xl"
       >
         <h2 className="text-2xl font-black text-center text-yellow-500 mb-2 italic">REGISTRO RAPIDO</h2>
@@ -54,7 +53,7 @@ export default function Transferencias() {
           <Info className="text-blue-400 shrink-0 mt-1" size={20} />
           <p className="text-[11px] text-blue-100 leading-relaxed">
             <span className="font-bold block text-blue-400 mb-1 text-xs">PASO FINAL:</span>
-            Se abrira WhatsApp. **Adjunta la foto de tu ticket** antes de enviar el mensaje.
+            Se abrira WhatsApp. **Adjunta la foto de tu comprobante** antes de enviar.
           </p>
         </div>
 
@@ -94,7 +93,7 @@ export default function Transferencias() {
             <div className="relative flex items-center">
               <User className="absolute left-3 text-yellow-500" size={16} />
               <input 
-                type="text" placeholder="Quien recoge el pedido" required 
+                type="text" placeholder="Quien recoge" required 
                 value={nombre} onChange={(e) => setNombre(e.target.value)}
                 className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-2.5 pl-9 text-white outline-none focus:border-yellow-500 transition-all" 
               />
@@ -117,7 +116,7 @@ export default function Transferencias() {
             type="submit" disabled={loading}
             className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-black py-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg active:scale-95 mt-4"
           >
-            {loading ? "CARGANDO..." : <><MessageCircle size={20} /> ENVIAR POR WHATSAPP</>}
+            {loading ? "ABRIENDO..." : <><MessageCircle size={20} /> ENVIAR POR WHATSAPP</>}
           </button>
         </form>
       </motion.div>
