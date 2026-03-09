@@ -112,8 +112,8 @@ export default function Menu() {
               <MenuItem name="Papas Pizza" price="$99" />
               <MenuItem name="Salchipapas" price="$89" />
               <MenuItem name="Papas con queso" price="$85" />
-              <MenuItem name="Buffalo" price="$85" />
-              <MenuItem name="Queso tocino" price="$85" />
+          
+              
               <MenuItem name="Dedos de queso" price="$90" />
               <MenuItem name="Aros de cebolla" price="$90" />
               <MenuItem name="Papas gajo" price="$80" />
@@ -174,7 +174,6 @@ export default function Menu() {
 
           <TabsContent value="hotdogs" className="space-y-2 animate-in fade-in slide-in-from-bottom-5">
             <MenuItem name="Clásico" price="$35" />
-            <MenuItem name="Chili" price="$45" />
             <MenuItem name="Especial" price="$50" />
           </TabsContent>
 
