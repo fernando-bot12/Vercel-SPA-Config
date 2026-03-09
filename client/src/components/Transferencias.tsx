@@ -16,19 +16,27 @@ export default function Transferencias() {
     e.preventDefault();
     setLoading(true);
 
-    const mensaje = `*NUEVO REGISTRO DE PAGO - YUM YUM* 🍗%0A%0A` +
-                    `*Nombre:* ${nombre}%0A` +
-                    `*Teléfono:* ${telefono}%0A` +
-                    `*Sucursal:* ${sucursal.toUpperCase()}%0A` +
-                    `*# Orden:* ${orden}%0A%0A` +
-                    `_📌 Recuerda adjuntar tu captura aquí abajo._`;
+    // Formato de mensaje mejorado con emojis y separadores
+    const mensaje = 
+      `*— NUEVO REGISTRO DE PAGO —* 🍗%0A` +
+      `*YUM YUM ALITAS Y BONELESS*%0A%0A` +
+      `👤 *Cliente:* ${nombre}%0A` +
+      `📞 *Teléfono:* ${telefono}%0A` +
+      `📍 *Sucursal:* ${sucursal.toUpperCase()}%0A` +
+      `🆔 *# de Orden:* ${orden}%0A%0A` +
+      `━━━━━━━━━━━━━━━━━━%0A` +
+      `✨ *Envío mi foto de pago aquí abajo* ✨`;
 
     const numeroWhatsApp = "528994698833"; 
 
     setTimeout(() => {
+      // Abre WhatsApp con el mensaje formateado
       window.open(`https://wa.me/${numeroWhatsApp}?text=${mensaje}`, "_blank");
       setLoading(false);
-      toast({ title: "🚀 ¡Abriendo WhatsApp!", description: "Envía el texto y adjunta tu foto." });
+      toast({ 
+        title: "🚀 ¡WhatsApp abierto!", 
+        description: "No olvides adjuntar la captura antes de enviar el chat." 
+      });
     }, 800);
   };
 
@@ -45,21 +53,21 @@ export default function Transferencias() {
           <Info className="text-blue-400 shrink-0 mt-1" size={20} />
           <p className="text-[11px] text-blue-100 leading-relaxed">
             <span className="font-bold block text-blue-400 mb-1 text-xs">⚠️ PASO FINAL:</span>
-            Se abrirá WhatsApp con tus datos. **¡Solo adjunta tu comprobante y dale enviar!**
+            Se abrirá WhatsApp con tus datos listos. **¡Solo adjunta tu comprobante y dale enviar!**
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1">
-              <label className="text-[10px] font-bold text-gray-500 uppercase ml-1">Sucursal</label>
+              <label className="text-[10px] font-bold text-gray-500 uppercase ml-1 text-shadow-sm">Sucursal</label>
               <div className="relative flex items-center">
                 <MapPin className="absolute left-3 text-yellow-500" size={16} />
                 <select 
                   required 
                   value={sucursal}
                   onChange={(e) => setSucursal(e.target.value)}
-                  className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-2.5 pl-9 text-white appearance-none outline-none focus:border-yellow-500"
+                  className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-2.5 pl-9 text-white appearance-none outline-none focus:border-yellow-500 transition-all"
                 >
                   <option value="granjas">Granjas</option>
                   <option value="torres">Torres</option>
@@ -74,7 +82,7 @@ export default function Transferencias() {
                 <input 
                   type="number" placeholder="000" required 
                   value={orden} onChange={(e) => setOrden(e.target.value)}
-                  className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-2.5 pl-9 text-white outline-none focus:border-yellow-500" 
+                  className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-2.5 pl-9 text-white outline-none focus:border-yellow-500 transition-all" 
                 />
               </div>
             </div>
@@ -87,7 +95,7 @@ export default function Transferencias() {
               <input 
                 type="text" placeholder="Quién recoge el pedido" required 
                 value={nombre} onChange={(e) => setNombre(e.target.value)}
-                className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-2.5 pl-9 text-white outline-none focus:border-yellow-500" 
+                className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-2.5 pl-9 text-white outline-none focus:border-yellow-500 transition-all" 
               />
             </div>
           </div>
@@ -99,7 +107,7 @@ export default function Transferencias() {
               <input 
                 type="tel" placeholder="899 000 0000" required 
                 value={telefono} onChange={(e) => setTelefono(e.target.value)}
-                className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-2.5 pl-9 text-white outline-none focus:border-yellow-500" 
+                className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-2.5 pl-9 text-white outline-none focus:border-yellow-500 transition-all" 
               />
             </div>
           </div>
