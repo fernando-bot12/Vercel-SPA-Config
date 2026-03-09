@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Camera, Upload, CheckCircle2 } from "lucide-react";
+import { Camera, Upload, CheckCircle2, User, Phone } from "lucide-react"; // Añadí iconos nuevos
 import { useToast } from "@/hooks/use-toast";
 
 export default function Transferencias() {
@@ -18,7 +18,7 @@ export default function Transferencias() {
     e.preventDefault();
     setLoading(true);
     
-    // Simulación de envío a tu backend PHP/MySQL
+    // Aquí es donde conectarás con Supabase o tu backend más adelante
     setTimeout(() => {
       setLoading(false);
       toast({
@@ -37,9 +37,11 @@ export default function Transferencias() {
         className="transferencias-card"
       >
         <h2>⚡ Registro Rápido ⚡</h2>
-        <p>Sube tu ticket o captura para validar tu pedido al instante.</p>
+        <p>Completa tus datos y sube tu captura para validar tu pedido.</p>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          
+          {/* Fila 1: Sucursal y Orden */}
           <div className="transferencias-row">
             <div>
               <label>Sucursal</label>
@@ -50,30 +52,58 @@ export default function Transferencias() {
             </div>
             <div>
               <label># Orden</label>
-              <input type="number" placeholder="000" required />
+              <input type="number" placeholder="Ej: 501" required className="w-full" />
             </div>
           </div>
 
-          {/* Área de carga de archivos */}
-          <div className="relative">
-            <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-primary/30 rounded-xl bg-primary/5 hover:bg-primary/10 transition-all cursor-pointer">
-              <div className="flex flex-col items-center justify-center pt-5 pb-6">
+          {/* Fila 2: Nombre Completo */}
+          <div className="flex flex-col">
+            <label>Nombre Completo</label>
+            <div className="relative">
+              <User className="absolute left-3 top-3 text-gray-500" size={18} />
+              <input 
+                type="text" 
+                placeholder="Nombre de quien recoge" 
+                required 
+                className="w-full pl-10" 
+              />
+            </div>
+          </div>
+
+          {/* Fila 3: Teléfono */}
+          <div className="flex flex-col">
+            <label>Teléfono de Contacto</label>
+            <div className="relative">
+              <Phone className="absolute left-3 top-3 text-gray-500" size={18} />
+              <input 
+                type="tel" 
+                placeholder="899 000 0000" 
+                required 
+                className="w-full pl-10" 
+              />
+            </div>
+          </div>
+
+          {/* Área de carga de archivos (Captura de Pantalla) */}
+          <div className="relative pt-2">
+            <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-primary/30 rounded-xl bg-primary/5 hover:bg-primary/10 transition-all cursor-pointer">
+              <div className="flex flex-col items-center justify-center">
                 {file ? (
                   <>
-                    <CheckCircle2 className="text-primary mb-2" size={40} />
-                    <p className="text-sm text-white">{file.name}</p>
+                    <CheckCircle2 className="text-primary mb-1" size={30} />
+                    <p className="text-xs text-white px-2 text-center">{file.name}</p>
                   </>
                 ) : (
                   <>
-                    <Camera className="text-primary/60 mb-2" size={40} />
-                    <p className="text-sm text-gray-400">Toca para tomar foto o subir ticket</p>
+                    <Camera className="text-primary/60 mb-1" size={30} />
+                    <p className="text-xs text-gray-400">Toca para tomar foto o subir captura</p>
                   </>
                 )}
               </div>
               <input 
                 type="file" 
                 accept="image/*" 
-                capture="environment" // Esto abre la cámara directo en móviles
+                capture="environment" 
                 className="hidden" 
                 onChange={handleFileChange}
                 required
@@ -84,9 +114,9 @@ export default function Transferencias() {
           <button 
             type="submit" 
             disabled={loading}
-            className="flex items-center justify-center gap-2"
+            className="w-full flex items-center justify-center gap-2 bg-primary py-3 rounded-lg font-bold"
           >
-            {loading ? "Enviando..." : <><Upload size={20} /> Enviar Comprobante</>}
+            {loading ? "Enviando..." : <><Upload size={20} /> Enviar Datos</>}
           </button>
         </form>
       </motion.div>
