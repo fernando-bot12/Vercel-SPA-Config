@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Camera, Upload, CheckCircle2, User, Phone } from "lucide-react"; // Añadí iconos nuevos
+import { Camera, Upload, CheckCircle2, User, Phone, MapPin, Hash } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export default function Transferencias() {
@@ -18,7 +18,7 @@ export default function Transferencias() {
     e.preventDefault();
     setLoading(true);
     
-    // Aquí es donde conectarás con Supabase o tu backend más adelante
+    // Simulación de envío
     setTimeout(() => {
       setLoading(false);
       toast({
@@ -30,72 +30,89 @@ export default function Transferencias() {
   };
 
   return (
-    <section id="transferencias" className="transferencias-section">
+    <section id="transferencias" className="min-h-screen bg-[#0a0a0a] py-10 px-4">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        className="transferencias-card"
+        className="max-w-md mx-auto bg-[#141414] border border-yellow-500/20 rounded-2xl p-6 shadow-2xl"
       >
-        <h2>⚡ Registro Rápido ⚡</h2>
-        <p>Completa tus datos y sube tu captura para validar tu pedido.</p>
+        <h2 className="text-2xl font-black text-center text-yellow-500 mb-2">⚡ REGISTRO RÁPIDO ⚡</h2>
+        <p className="text-gray-400 text-center text-sm mb-8">Valida tu pedido de Yum Yum en segundos</p>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-5">
           
           {/* Fila 1: Sucursal y Orden */}
-          <div className="transferencias-row">
-            <div>
-              <label>Sucursal</label>
-              <select required className="w-full">
-                <option value="cumbres">Cumbres</option>
-                <option value="granjas">Granjas</option>
-              </select>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-gray-500 uppercase ml-1">Sucursal</label>
+              <div className="relative flex items-center">
+                <MapPin className="absolute left-3 text-yellow-500" size={18} />
+                <select 
+                  required 
+                  className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-3 pl-10 text-white appearance-none focus:border-yellow-500 outline-none transition-all"
+                >
+                  <option value="granjas" className="bg-[#1a1a1a]">Granjas</option>
+                  <option value="torres" className="bg-[#1a1a1a]">Torres</option>
+                  <option value="cumbres" className="bg-[#1a1a1a]">Cumbres</option>
+                </select>
+              </div>
             </div>
-            <div>
-              <label># Orden</label>
-              <input type="number" placeholder="Ej: 501" required className="w-full" />
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-gray-500 uppercase ml-1"># Orden</label>
+              <div className="relative flex items-center">
+                <Hash className="absolute left-3 text-yellow-500" size={18} />
+                <input 
+                  type="number" 
+                  placeholder="Ej: 501" 
+                  required 
+                  className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-3 pl-10 text-white focus:border-yellow-500 outline-none transition-all" 
+                />
+              </div>
             </div>
           </div>
 
           {/* Fila 2: Nombre Completo */}
-          <div className="flex flex-col">
-            <label>Nombre Completo</label>
-            <div className="relative">
-              <User className="absolute left-3 top-3 text-gray-500" size={18} />
+          <div className="space-y-1">
+            <label className="text-xs font-bold text-gray-500 uppercase ml-1">Nombre de quien recoge</label>
+            <div className="relative flex items-center">
+              <User className="absolute left-3 text-yellow-500" size={18} />
               <input 
                 type="text" 
-                placeholder="Nombre de quien recoge" 
+                placeholder="Nombre completo" 
                 required 
-                className="w-full pl-10" 
+                className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-3 pl-10 text-white focus:border-yellow-500 outline-none transition-all" 
               />
             </div>
           </div>
 
           {/* Fila 3: Teléfono */}
-          <div className="flex flex-col">
-            <label>Teléfono de Contacto</label>
-            <div className="relative">
-              <Phone className="absolute left-3 top-3 text-gray-500" size={18} />
+          <div className="space-y-1">
+            <label className="text-xs font-bold text-gray-500 uppercase ml-1">Teléfono</label>
+            <div className="relative flex items-center">
+              <Phone className="absolute left-3 text-yellow-500" size={18} />
               <input 
                 type="tel" 
                 placeholder="899 000 0000" 
                 required 
-                className="w-full pl-10" 
+                className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-3 pl-10 text-white focus:border-yellow-500 outline-none transition-all" 
               />
             </div>
           </div>
 
-          {/* Área de carga de archivos (Captura de Pantalla) */}
-          <div className="relative pt-2">
-            <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-primary/30 rounded-xl bg-primary/5 hover:bg-primary/10 transition-all cursor-pointer">
+          {/* Área de Cámara / Upload */}
+          <div className="pt-2">
+            <label className="flex flex-col items-center justify-center w-full h-36 border-2 border-dashed border-yellow-500/20 rounded-2xl bg-yellow-500/5 hover:bg-yellow-500/10 transition-all cursor-pointer group">
               <div className="flex flex-col items-center justify-center">
                 {file ? (
                   <>
-                    <CheckCircle2 className="text-primary mb-1" size={30} />
-                    <p className="text-xs text-white px-2 text-center">{file.name}</p>
+                    <CheckCircle2 className="text-green-500 mb-2" size={32} />
+                    <p className="text-xs text-gray-300 font-medium">{file.name}</p>
                   </>
                 ) : (
                   <>
-                    <Camera className="text-primary/60 mb-1" size={30} />
+                    <div className="p-3 bg-yellow-500/10 rounded-full mb-2 group-hover:scale-110 transition-transform">
+                      <Camera className="text-yellow-500" size={28} />
+                    </div>
                     <p className="text-xs text-gray-400">Toca para tomar foto o subir captura</p>
                   </>
                 )}
@@ -111,12 +128,13 @@ export default function Transferencias() {
             </label>
           </div>
 
+          {/* Botón de Envío */}
           <button 
             type="submit" 
             disabled={loading}
-            className="w-full flex items-center justify-center gap-2 bg-primary py-3 rounded-lg font-bold"
+            className="w-full bg-yellow-500 hover:bg-yellow-600 disabled:bg-gray-700 text-black font-black py-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg active:scale-95"
           >
-            {loading ? "Enviando..." : <><Upload size={20} /> Enviar Datos</>}
+            {loading ? "PROCESANDO..." : <><Upload size={20} /> ENVIAR DATOS</>}
           </button>
         </form>
       </motion.div>
