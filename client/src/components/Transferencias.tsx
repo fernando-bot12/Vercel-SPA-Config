@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Camera, Upload, CheckCircle2, User, Phone, MapPin, Hash, MessageCircle } from "lucide-react";
+import { Camera, Upload, CheckCircle2, User, Phone, MapPin, Hash, MessageCircle, Info } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export default function Transferencias() {
@@ -8,7 +8,6 @@ export default function Transferencias() {
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   
-  // Estados para controlar los campos del formulario
   const [nombre, setNombre] = useState("");
   const [telefono, setTelefono] = useState("");
   const [sucursal, setSucursal] = useState("granjas");
@@ -24,25 +23,22 @@ export default function Transferencias() {
     e.preventDefault();
     setLoading(true);
 
-    // 1. Creamos el mensaje para WhatsApp
     const mensaje = `*NUEVO REGISTRO DE PAGO - YUM YUM* 🍗%0A%0A` +
                     `*Nombre:* ${nombre}%0A` +
                     `*Teléfono:* ${telefono}%0A` +
                     `*Sucursal:* ${sucursal.toUpperCase()}%0A` +
                     `*# Orden:* ${orden}%0A%0A` +
-                    `_Adjunto mi captura de pantalla abajo._`;
+                    `_📌 Por favor, adjunta tu captura de pantalla aquí abajo._`;
 
-    // 2. Número de destino
     const numeroWhatsApp = "528994698833"; 
 
-    // 3. Abrir WhatsApp
     setTimeout(() => {
       window.open(`https://wa.me/${numeroWhatsApp}?text=${mensaje}`, "_blank");
       setLoading(false);
       
       toast({
-        title: "✅ ¡Casi listo!",
-        description: "Envía el mensaje en WhatsApp para finalizar.",
+        title: "🚀 ¡Casi listo!",
+        description: "No olvides adjuntar la foto en el chat.",
       });
     }, 1000);
   };
@@ -54,21 +50,29 @@ export default function Transferencias() {
         whileInView={{ opacity: 1, y: 0 }}
         className="max-w-md mx-auto bg-[#141414] border border-yellow-500/20 rounded-2xl p-6 shadow-2xl"
       >
-        <h2 className="text-2xl font-black text-center text-yellow-500 mb-2 text-shadow-sm">⚡ REGISTRO RÁPIDO ⚡</h2>
-        <p className="text-gray-400 text-center text-sm mb-8">Envía tu comprobante directo a nuestro WhatsApp</p>
+        <h2 className="text-2xl font-black text-center text-yellow-500 mb-2">⚡ REGISTRO RÁPIDO ⚡</h2>
+        
+        {/* --- RECUADRO DE INSTRUCCIONES --- */}
+        <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-3 mb-6 flex gap-3 items-start">
+          <Info className="text-blue-400 shrink-0 mt-1" size={20} />
+          <p className="text-[11px] text-blue-100 leading-relaxed">
+            <span className="font-bold block text-blue-400 mb-1 text-xs">⚠️ PASO FINAL IMPORTANTE:</span>
+            Al presionar el botón verde se abrirá WhatsApp. **¡No olvides adjuntar la foto de tu pago!** antes de darle enviar.
+          </p>
+        </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-4">
           
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1">
-              <label className="text-xs font-bold text-gray-500 uppercase ml-1">Sucursal</label>
+              <label className="text-[10px] font-bold text-gray-500 uppercase ml-1">Sucursal</label>
               <div className="relative flex items-center">
-                <MapPin className="absolute left-3 text-yellow-500" size={18} />
+                <MapPin className="absolute left-3 text-yellow-500" size={16} />
                 <select 
                   required 
                   value={sucursal}
                   onChange={(e) => setSucursal(e.target.value)}
-                  className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-3 pl-10 text-white appearance-none focus:border-yellow-500 outline-none transition-all"
+                  className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-2.5 pl-9 text-white appearance-none outline-none focus:border-yellow-500"
                 >
                   <option value="granjas" className="bg-[#1a1a1a]">Granjas</option>
                   <option value="torres" className="bg-[#1a1a1a]">Torres</option>
@@ -77,65 +81,63 @@ export default function Transferencias() {
               </div>
             </div>
             <div className="space-y-1">
-              <label className="text-xs font-bold text-gray-500 uppercase ml-1"># Orden</label>
+              <label className="text-[10px] font-bold text-gray-500 uppercase ml-1"># Orden</label>
               <div className="relative flex items-center">
-                <Hash className="absolute left-3 text-yellow-500" size={18} />
+                <Hash className="absolute left-3 text-yellow-500" size={16} />
                 <input 
                   type="number" 
-                  placeholder="Ej: 501" 
+                  placeholder="000" 
                   required 
                   value={orden}
                   onChange={(e) => setOrden(e.target.value)}
-                  className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-3 pl-10 text-white focus:border-yellow-500 outline-none transition-all" 
+                  className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-2.5 pl-9 text-white outline-none focus:border-yellow-500" 
                 />
               </div>
             </div>
           </div>
 
           <div className="space-y-1">
-            <label className="text-xs font-bold text-gray-500 uppercase ml-1">Nombre de quien recoge</label>
+            <label className="text-[10px] font-bold text-gray-500 uppercase ml-1">Nombre completo</label>
             <div className="relative flex items-center">
-              <User className="absolute left-3 text-yellow-500" size={18} />
+              <User className="absolute left-3 text-yellow-500" size={16} />
               <input 
                 type="text" 
-                placeholder="Nombre completo" 
+                placeholder="Quién recoge el pedido" 
                 required 
                 value={nombre}
                 onChange={(e) => setNombre(e.target.value)}
-                className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-3 pl-10 text-white focus:border-yellow-500 outline-none transition-all" 
+                className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-2.5 pl-9 text-white outline-none focus:border-yellow-500" 
               />
             </div>
           </div>
 
           <div className="space-y-1">
-            <label className="text-xs font-bold text-gray-500 uppercase ml-1">Teléfono</label>
+            <label className="text-[10px] font-bold text-gray-500 uppercase ml-1">Teléfono</label>
             <div className="relative flex items-center">
-              <Phone className="absolute left-3 text-yellow-500" size={18} />
+              <Phone className="absolute left-3 text-yellow-500" size={16} />
               <input 
                 type="tel" 
                 placeholder="899 000 0000" 
                 required 
                 value={telefono}
                 onChange={(e) => setTelefono(e.target.value)}
-                className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-3 pl-10 text-white focus:border-yellow-500 outline-none transition-all" 
+                className="w-full bg-[#1a1a1a] border border-gray-800 rounded-xl p-2.5 pl-9 text-white outline-none focus:border-yellow-500" 
               />
             </div>
           </div>
 
           <div className="pt-2">
-            <label className="flex flex-col items-center justify-center w-full h-36 border-2 border-dashed border-yellow-500/20 rounded-2xl bg-yellow-500/5 hover:bg-yellow-500/10 transition-all cursor-pointer group">
+            <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-yellow-500/20 rounded-2xl bg-yellow-500/5 hover:bg-yellow-500/10 transition-all cursor-pointer">
               <div className="flex flex-col items-center justify-center">
                 {file ? (
                   <>
-                    <CheckCircle2 className="text-green-500 mb-2" size={32} />
-                    <p className="text-xs text-gray-300 font-medium px-4 text-center">{file.name}</p>
+                    <CheckCircle2 className="text-green-500 mb-1" size={28} />
+                    <p className="text-[10px] text-gray-300 font-medium px-4 text-center truncate w-40">{file.name}</p>
                   </>
                 ) : (
                   <>
-                    <div className="p-3 bg-yellow-500/10 rounded-full mb-2 group-hover:scale-110 transition-transform">
-                      <Camera className="text-yellow-500" size={28} />
-                    </div>
-                    <p className="text-xs text-gray-400">Toca para tomar foto o subir captura</p>
+                    <Camera className="text-yellow-500 mb-1" size={24} />
+                    <p className="text-[10px] text-gray-400">Toca para tomar foto o subir captura</p>
                   </>
                 )}
               </div>
@@ -153,9 +155,9 @@ export default function Transferencias() {
           <button 
             type="submit" 
             disabled={loading}
-            className="w-full bg-[#25D366] hover:bg-[#128C7E] disabled:bg-gray-700 text-white font-black py-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg active:scale-95"
+            className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-black py-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg active:scale-95 mt-4"
           >
-            {loading ? "ABRIENDO..." : <><MessageCircle size={22} /> ENVIAR POR WHATSAPP</>}
+            {loading ? "PREPARANDO..." : <><MessageCircle size={20} /> ENVIAR POR WHATSAPP</>}
           </button>
         </form>
       </motion.div>
