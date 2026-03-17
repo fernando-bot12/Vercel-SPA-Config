@@ -26,7 +26,7 @@ export default function Transferencias() {
       `Envio mi foto de pago abajo`;
 
     const mensajeFinal = encodeURIComponent(mensajeTexto);
-    const numeroWhatsApp = "528994698833"; 
+    const numeroWhatsApp = "528991180463"; 
 
     setTimeout(() => {
       window.open(`https://wa.me/${numeroWhatsApp}?text=${mensajeFinal}`, "_blank");
